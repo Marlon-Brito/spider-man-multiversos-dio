@@ -1,92 +1,101 @@
-@import url('reset.css');
-@import url('global.css');
-@import url('components/_navigator.css');
-@import url('components/_pills.css');
-@import url('components/_link-button.css');
-@import url('components/_gallery.css');
+@import url('./reset.css');
+@import url('./global.css');
+@import url('./components/_navigator.css');
+@import url('./components/_pills.css');
+@import url('./components/_link-button.css');
+@import url('./components/_gallery.css');
 
 .s-wrapper {
   display: flex;
-  height: 100vh;
-  flex-flow: row nowrap; 
-  background-color: aqua; 
+  flex-direction: column;
 }
 
-.s-wrapper video{
+.s-wrapper video {
   position: fixed;
   width: 100%;
-
+  display: none;
 }
 
 .s-wrapper .s-left-column {
-  width: 100px;
-  height: 100%;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: var(--primary-color); */
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
-  padding-right: 50px;
+  /* padding-right: 500px; */
   left: 0;
-  top: 0;
+  bottom: 0;
   z-index: 1;
 }
 
-.s-wrapper .s-main-content{
-  height: 100%;
-  width: 100%;
-  padding-left: 130px;
+.s-wrapper .s-main-content {
+  /* background-color: gray; */
+  /* padding-left: 130px; */
   position: relative;
 }
 
 .s-wrapper .s-main-content__top {
-  height: 80vh;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  /* background-color: brown; */
 }
 
-.s-wrapper .s-main-content__bottom{
-  height: 20vh;
+.s-wrapper .s-main-content__bottom {
+  height: 20%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  /* background-color: blueviolet; */
 }
 
-.s-wrapper .s-main-content .s-logo img{
+.s-wrapper .s-main-content .s-logo {
+  display: flex;
+  justify-content: center;
+}
+
+.s-wrapper .s-main-content .s-logo img {
   margin-top: 50px;
   margin-left: 0;
   margin-bottom: 30px;
+  width: 100%;
 }
 
-.s-wrapper .s-main-content__top .s-description{
-  background-color: rgba(0,0,0,.7);
-  max-width: 50%;
+.s-wrapper .s-main-content__top .s-description {
+  background-color: rgba(0, 0, 0, 0.7);
+  /* max-width: 50%; */
   padding: 20px;
   border-radius: 10px;
+  margin: 0 10px;
 }
 
-.s-wrapper .s-main-content__top .s-description .s-description__text p{
+.s-wrapper .s-main-content__top .s-description .s-description__text p {
   color: white;
   line-height: 170%;
 }
 
-.s-wrapper .s-main-content__top .s-description .pills{
+.s-wrapper .s-main-content__top .s-description .pills {
   margin-bottom: 20px;
 }
 
-.s-wrapper .s-main-content .s-links{
+.s-wrapper .s-main-content .s-links {
   padding: 20px;
   padding-left: 0;
+  margin: 0 10px;
 }
 
-.s-wrapper .s-main-content .s-links ul{
+.s-wrapper .s-main-content .s-links ul {
   display: flex;
   flex-direction: row;
 }
 
 .s-spiderman-01-01 {
   background-image: url('../images/spiderman-tobey/movie-01/background.png');
-  background-size:cover;
+  background-size: cover;
 }
 
 .s-spiderman-01-02 {
@@ -97,4 +106,70 @@
 .s-spiderman-01-03 {
   background-image: url('../images/spiderman-tobey/movie-03/background.png');
   background-size: cover;
+}
+
+@media (min-width: 768px) {
+  .s-wrapper .s-main-content {
+    display: flex;
+    flex-direction: column;
+    /* background-color: gray; */
+    padding-left: 130px;
+    position: relative;
+  }
+
+  .s-wrapper .s-main-content .s-logo {
+    display: flex;
+    justify-content: start;
+  }
+
+  .s-wrapper .s-main-content__top .s-description {
+    max-width: 90%;
+  }
+
+  .s-wrapper .s-main-content__top .s-description, .s-wrapper .s-main-content .s-links {
+    margin: 0;
+  }
+
+  .s-wrapper .s-left-column {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    /* padding-right: 50px; */
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+}
+
+@media (min-width: 1200px) {
+  .s-wrapper .s-main-content .s-logo img {
+    width: 70%;
+  }
+}
+
+@media (min-width: 1500px) {
+  .s-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .s-wrapper .s-main-content__top {
+    height: 60%;
+  }
+
+  .s-wrapper .s-main-content__bottom {
+    height: 40%;
+    padding-top: 50px;
+  }
+
+  .s-wrapper video {
+    display: block;
+  }
+
+  .s-wrapper .s-main-content__top .s-description {
+    max-width: 50%;
+  }
 }

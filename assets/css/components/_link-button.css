@@ -1,16 +1,16 @@
-a.link-button{
+a.link-button {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   color: white;
 }
 
-a.link-button .icon{
+a.link-button .icon {
   width: 32px;
   height: 32px;
   padding: 3px;
-  background-color: var(--primary-color);
-  border: solid 1px white;
+  background-color: black;
+  border: 1px solid white;
   background-clip: content-box;
   border-radius: 50%;
   position: relative;
@@ -19,9 +19,9 @@ a.link-button .icon{
   justify-content: center;
 }
 
-a.link-button .icon .play-icon{
-  border:solid 7px white;
-  width:0;
+a.link-button .icon .play-icon {
+  border: 7px solid white;
+  width: 0;
   height: 0;
   border-top-color: transparent;
   border-right-color: transparent;
@@ -29,6 +29,12 @@ a.link-button .icon .play-icon{
   margin-right: -7px;
 }
 
-a.link-button .label{
+a.link-button .label {
   margin-left: 10px;
+}
+
+@media (min-width: 1500px) {
+  a.link-button .icon {
+    background-color: var(--primary-color);
+  }
 }

@@ -1,20 +1,22 @@
-@import url('reset.css');
-@import url('global.css');
+/* Importando as propriedades de reset e global css */
+@import url('./global.css');
+@import url('./reset.css');
 
 body {
   background-color: var(--primary-color);
 }
 
+/* Elementos "virtuais" criados via css para se estilizar, este vem ANTES do conteúdo da tag */
 body::before {
-  content: "";
-  background-image: url('../images/spider-man-background.jpg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  content: ""; /* Deve colocar conteúdo senão não aparecerá */
+  background-image: url('../../assets/images/spider-man-background.jpg');
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: absolute; /* Ficará sobre a tag body */
   opacity: 0.2;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; /* Cobrirá todo o elemento */
   transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
 }
 
@@ -22,7 +24,7 @@ body::before {
   padding: 1rem 0;
   width: 100%;
   text-align: center;
-  position: relative;
+  position: relative; /* Faz o menu ficar clicável novamente após se colocar o fundo da página */
 }
 
 .s-menu__item {
@@ -31,26 +33,30 @@ body::before {
   margin: 0 1.25rem;
 }
 
+.s-menu__item a{
+  font-size: 0.8em;
+}
+
 .s-menu__icon {
   width: 2.5rem;
   margin: 0 1.25rem;
-  vertical-align: middle;
+  vertical-align: middle; /* Alinhamento vertical ao meio */
 }
 
 .s-container {
-  position: relative;
+  position: relative; /* Também para ser tangível igual ao menu */
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  perspective: 3000px;
+  perspective: 3000px; /* A perspectiva tem que ser aplicada ao pai para ir aos filhos (bandeja) */
 }
 
 .s-card {
-  border: 0.5rem solid white;
-  width: 100%;
-  height: 70vh;
+  border: 0.5rem solid white; /* rem = número de pixels / 16 */
+  width: 100%; /* De 100 dividirá em 3 menos 8% para não ficarem colados */
+  height: 60vh;
   position: absolute;
-  transition: filter .5s ease-in-out;
+  transition: filter 0.5s ease-in-out;
 }
 
 .s-card:nth-child(1) {
@@ -62,33 +68,34 @@ body::before {
 }
 
 .s-card:nth-child(3) {
-  transform: rotateY(240deg) translateZ(50vw);
+  transform: rotateY(-120deg) translateZ(50vw);
 }
 
 .s-card__background {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* A imagem vai se ajustar a todo o espaço cobrindo tudo */
   position: absolute;
-  opacity: 1;
+  opacity: 1; /* Para animação de sumir e aparecer */
   transition: opacity 1s ease-in-out;
 }
 
 .s-card__image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* Que a imagem se encaixe no container */
   position: relative;
   transition: 1s ease-in-out;
 }
 
 .s-card__title {
-  font-size: 2rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
   text-align: center;
-  position: absolute;
+  position: absolute; /* Para ficar dentro e em cima do card, logo após o spider-man */
   width: 100%;
   bottom: 0;
+  text-shadow: 2px 2px 0px black;
   transition: bottom 1s ease-in-out;
 }
 
@@ -115,7 +122,7 @@ body::before {
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
-  z-index: 1;
+  z-index: 1; /* Para a linha não cobrir os círculos */
   transition: transform 0.3s ease-in-out;
 }
 
@@ -123,7 +130,7 @@ body::before {
   transform: scale(1.1);
 }
 
-.s-controller__button:nth-child(2) {
+.s-controller__button:nth-child(2) { /* Pegando o segundo elemento desta classe */
   margin: 0 3.75rem;
 }
 
@@ -136,12 +143,10 @@ body::before {
 
 .s-controller__line {
   background-color: white;
-  width: 50%;
+  width: 90%;
   height: 2px;
   position: absolute;
 }
-
-/* Hover Animation */
 
 .s-card--hovered .s-card__background {
   cursor: pointer;
@@ -150,7 +155,7 @@ body::before {
 
 .s-card--hovered .s-card__image {
   transform: scale(1.4);
-  filter: drop-shadow(30px 10px 4px rgba(0, 0, 0, .5));
+  filter: drop-shadow(30px 10px 4px rgba(0, 0, 0, 0.5)); /* Sombra projetada */
 }
 
 body#spider-man-01-hovered::before {
@@ -165,22 +170,52 @@ body#spider-man-03-hovered::before {
   background-image: url('../images/pic-sm-bg-03.jpg');
 }
 
+/* Pegando um atributo do body em específico que comece com "spider-man-" independente do resto */
 body[id^="spider-man-"]::before {
   opacity: 1;
 }
-
+/* Pegar todos cards que não tenham a classe s-card--hovered, ou seja, que não estão selecionados */
 body[id^="spider-man-"] .s-card:not(.s-card--hovered) {
   filter: grayscale(100%);
 }
 
+/* Fazendo o nome ir mais ao centro do elemento sobreposto */
 .s-card--hovered .s-card__title {
-  bottom: 50%;
+ bottom: 50%;
 }
 
 .s-cards-carousel {
   display: flex;
   justify-content: center;
-  width: calc(100vw / 3 - 10%);
-  transform-style: preserve-3d;
+  width: calc(100vw / 3);
+  transform-style: preserve-3d; /* Os filhos devem manter suas configurações 3D */
   transition: transform 0.4s ease-in;
+}
+
+@media (min-width: 500px) {
+  .s-card__title {
+    font-size: 1.5rem;
+  }
+
+  .s-controller__line {
+    width: 50%;
+  }
+
+  .s-cards-carousel {
+    width: calc(100vw / 3 - 5%);
+  }
+}
+
+@media (min-width: 768px) {
+  .s-card__title {
+    font-size: 2rem;
+  }
+
+  .s-card {
+    height: 70vh;
+  }
+
+  .s-cards-carousel {
+    width: calc(100vw / 3 - 10%);
+  }
 }
