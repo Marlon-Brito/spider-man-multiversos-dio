@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 :root { /* O chama para criar as variáveis css */
-  --primary-color: #B9001F
+  --primary-color: #B9001F;
 }
 
 body {
