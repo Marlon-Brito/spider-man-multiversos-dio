@@ -11,8 +11,9 @@ body::before {
   content: ""; /* Deve colocar conteúdo senão não aparecerá */
   background-image: url('../../assets/images/spider-man-background.jpg');
   width: 100%;
-  height: 100%;
-  position: absolute; /* Ficará sobre a tag body */
+  height: 100vh;
+  min-height: 100%;
+  position: fixed; /* Mantém o fundo fixo enquanto a página rola */
   opacity: 0.2;
   background-repeat: no-repeat;
   background-position: center;
